@@ -26,6 +26,14 @@ class VehicleController extends Controller
             'model' => 'required',
             'year' => 'required|integer',
             'color' => 'required',
+        ], [
+            'plate_number.required' => 'Plat nomor wajib diisi.',
+            'plate_number.unique' => 'Plat nomor sudah terdaftar.',
+            'brand.required' => 'Merk wajib diisi.',
+            'model.required' => 'Model wajib diisi.',
+            'year.required' => 'Tahun wajib diisi.',
+            'year.integer' => 'Tahun harus berupa angka.',
+            'color.required' => 'Warna wajib diisi.',
         ]);
 
         Vehicle::create($request->all());
@@ -50,6 +58,14 @@ class VehicleController extends Controller
             'model' => 'required',
             'year' => 'required|integer',
             'color' => 'required',
+        ], [
+            'plate_number.required' => 'Plat nomor wajib diisi.',
+            'plate_number.unique' => 'Plat nomor sudah terdaftar.',
+            'brand.required' => 'Merk wajib diisi.',
+            'model.required' => 'Model wajib diisi.',
+            'year.required' => 'Tahun wajib diisi.',
+            'year.integer' => 'Tahun harus berupa angka.',
+            'color.required' => 'Warna wajib diisi.',
         ]);
 
         $vehicle->update($request->all());
