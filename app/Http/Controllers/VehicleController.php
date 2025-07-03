@@ -36,8 +36,12 @@ class VehicleController extends Controller
             'color.required' => 'Warna wajib diisi.',
         ]);
 
-        Vehicle::create($request->all());
-        return redirect()->route('vehicles.index')->with('success', 'Vehicle created successfully.');
+        try {
+            Vehicle::create($request->all());
+            return redirect()->route('vehicles.index')->with('success', 'Vehicle berhasil disimpan.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->with('error', 'Gagal menyimpan data: ' . $e->getMessage());
+        }
     }
 
     public function show(Vehicle $vehicle)
@@ -68,13 +72,21 @@ class VehicleController extends Controller
             'color.required' => 'Warna wajib diisi.',
         ]);
 
-        $vehicle->update($request->all());
-        return redirect()->route('vehicles.index')->with('success', 'Vehicle updated successfully.');
+        try {
+            $vehicle->update($request->all());
+            return redirect()->route('vehicles.index')->with('success', 'Vehicle berhasil di update.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->with('error', 'Gagal memperbarui data: ' . $e->getMessage());
+        }
     }
 
     public function destroy(Vehicle $vehicle)
     {
-        $vehicle->delete();
-        return redirect()->route('vehicles.index')->with('success', 'Vehicle deleted successfully.');
+        try {
+            $vehicle->delete();
+            return redirect()->route('vehicles.index')->with('success', 'Vehicle berhasil dihapus.');
+        } catch (\Exception $e) {
+            return redirect()->route('vehicles.index')->with('error', 'Gagal menghapus data: ' . $e->getMessage());
+        }
     }
 }
