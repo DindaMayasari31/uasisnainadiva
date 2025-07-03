@@ -7,17 +7,20 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
+    // index
     public function index()
     {
         $vehicles = Vehicle::all();
         return view('vehicles.index', compact('vehicles'));
     }
 
+    // create
     public function create()
     {
         return view('vehicles.create');
     }
 
+    // store
     public function store(Request $request)
     {
         $request->validate([
@@ -32,16 +35,19 @@ class VehicleController extends Controller
         return redirect()->route('vehicles.index')->with('success', 'Vehicle created successfully.');
     }
 
+    // show
     public function show(Vehicle $vehicle)
     {
         return view('vehicles.show', compact('vehicle'));
     }
 
+    // edit
     public function edit(Vehicle $vehicle)
     {
         return view('vehicles.edit', compact('vehicle'));
     }
 
+    // update
     public function update(Request $request, Vehicle $vehicle)
     {
         $request->validate([
@@ -56,6 +62,7 @@ class VehicleController extends Controller
         return redirect()->route('vehicles.index')->with('success', 'Vehicle updated successfully.');
     }
 
+    // destroy
     public function destroy(Vehicle $vehicle)
     {
         $vehicle->delete();
