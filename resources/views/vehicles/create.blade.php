@@ -1,4 +1,4 @@
-{{-- filepath: c:\xampp8_212\htdocs\uasdiva\uasdiva\resources\views\vehicles\create.blade.php --}}
+
 @extends('layout.index')
 
 @section('content')
